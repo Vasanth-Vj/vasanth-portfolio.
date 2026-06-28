@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { springPresets } from '../../animations/springPresets';
@@ -92,7 +92,7 @@ export const Button: React.FC<ButtonProps> = ({
           transition={springPresets.tapScale}
           className="inline-block"
         >
-          <Link to={to} className={classes} {...linkProps}>
+          <Link className={classes} {...linkProps}>
             {innerContent}
           </Link>
         </motion.div>
@@ -128,7 +128,7 @@ export const Button: React.FC<ButtonProps> = ({
       transition={springPresets.tapScale}
       className={classes}
       disabled={disabled || isLoading}
-      {...buttonProps}
+      {...(buttonProps as Omit<HTMLMotionProps<'button'>, 'children'>)}
     >
       {innerContent}
     </motion.button>
