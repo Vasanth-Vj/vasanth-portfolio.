@@ -43,8 +43,8 @@ export const Services: React.FC = () => {
   return (
     <Section id="services" className="relative py-space-16 lg:py-space-24 bg-bg-primary">
       <Container>
-        {/* Section Header */}
-        <div className="max-w-2xl text-left mb-space-12 lg:mb-space-16">
+        {/* Section Header - Expanded whitespace margin */}
+        <div className="max-w-2xl text-left mb-space-16 lg:mb-space-24">
           <span className="font-mono text-xs font-semibold tracking-widest text-accent-primary uppercase mb-space-3 block">
             Capabilities
           </span>
@@ -57,19 +57,21 @@ export const Services: React.FC = () => {
           </p>
         </div>
 
-        {/* Services Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-space-6 lg:gap-space-8">
+        {/* Services Cards Grid - Balanced and centered visual layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-space-8 lg:gap-space-10">
           {services.map((item) => (
             <Card
               key={item.title}
               glass
               interactive
-              padding="lg"
-              className="flex flex-col items-start text-left h-full"
+              padding="none" // Handle padding manually inside class to optimize mobile vs desktop sizes
+              whileHover={{ y: -6 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+              className="flex flex-col items-start text-left h-full p-space-8 lg:p-space-10 border border-border-muted/80 hover:border-accent-primary/25 hover:shadow-[0_8px_30px_rgba(139,92,246,0.06)] transition-all duration-300"
             >
-              {/* Header Icon & Title */}
-              <div className="flex items-center gap-space-3 mb-space-6">
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent-primary/5 border border-accent-primary/10">
+              {/* Header Icon & Title - Increased space & glassmorphic icon backdrop */}
+              <div className="flex items-center gap-space-4 mb-space-8">
+                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-accent-primary/10 border border-accent-primary/20 shadow-[0_0_15px_-3px_rgba(139,92,246,0.15)]">
                   {item.icon}
                 </div>
                 <h3 className="font-mono text-sm font-bold text-text-primary tracking-wide">
@@ -77,27 +79,27 @@ export const Services: React.FC = () => {
                 </h3>
               </div>
 
-              {/* Value Proposition Framework (Problem -> Solution -> Outcome) */}
-              <div className="flex flex-col gap-space-4 w-full mt-auto">
-                <div className="border-l-2 border-red-500/20 pl-space-3 py-space-0.5">
-                  <span className="block text-[10px] font-mono font-semibold tracking-wider text-red-400 uppercase mb-0.5">
+              {/* Value Proposition Framework (Problem -> Solution -> Outcome) - Expanded gap */}
+              <div className="flex flex-col gap-space-6 w-full mt-auto">
+                <div className="border-l-2 border-red-500/20 pl-space-4 py-space-0.5">
+                  <span className="block text-[10px] font-mono font-bold tracking-widest text-red-400/80 uppercase mb-1">
                     The Problem
                   </span>
-                  <p className="text-[12px] text-text-secondary leading-normal">{item.problem}</p>
+                  <p className="text-[13px] text-text-secondary leading-relaxed">{item.problem}</p>
                 </div>
 
-                <div className="border-l-2 border-accent-primary/20 pl-space-3 py-space-0.5">
-                  <span className="block text-[10px] font-mono font-semibold tracking-wider text-accent-primary uppercase mb-0.5">
+                <div className="border-l-2 border-accent-primary/20 pl-space-4 py-space-0.5">
+                  <span className="block text-[10px] font-mono font-bold tracking-widest text-accent-primary/80 uppercase mb-1">
                     The Solution
                   </span>
-                  <p className="text-[12px] text-text-secondary leading-normal">{item.solution}</p>
+                  <p className="text-[13px] text-text-secondary leading-relaxed">{item.solution}</p>
                 </div>
 
-                <div className="border-l-2 border-emerald-500/20 pl-space-3 py-space-0.5">
-                  <span className="block text-[10px] font-mono font-semibold tracking-wider text-emerald-400 uppercase mb-0.5">
+                <div className="border-l-2 border-emerald-500/20 pl-space-4 py-space-0.5">
+                  <span className="block text-[10px] font-mono font-bold tracking-widest text-emerald-400/80 uppercase mb-1">
                     Business Outcome
                   </span>
-                  <p className="text-[12px] text-text-primary font-medium leading-normal">
+                  <p className="text-[13px] text-text-primary font-medium leading-relaxed">
                     {item.outcome}
                   </p>
                 </div>
