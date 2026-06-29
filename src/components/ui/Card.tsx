@@ -43,7 +43,7 @@ export const Card: React.FC<CardProps> = ({
 
   // If asChild is enabled and a single valid element is passed, clone and pass styles/props
   if (asChild && React.isValidElement(children)) {
-    const child = children as React.ReactElement<Record<string, unknown>>;
+    const child = children as React.ReactElement<{ className?: string }>;
     const mergedClass = cn(baseClass, child.props.className);
 
     if (interactive) {
