@@ -10,6 +10,7 @@ import { Badge } from './components/ui/Badge';
 import { Input } from './components/ui/Input';
 import { Textarea } from './components/ui/Textarea';
 import { Mail, ArrowRight, User } from 'lucide-react';
+import { Hero } from './components/sections/Hero';
 
 function App() {
   const [loading, setLoading] = React.useState(false);
@@ -24,6 +25,9 @@ function App() {
   return (
     <BrowserRouter>
       <MainLayout>
+        {/* Render newly implemented Hero Section */}
+        <Hero />
+
         <Container className="py-space-12">
           <div className="border-b border-border-muted pb-space-6 mb-space-8">
             <Heading level={1} className="mb-space-2" gradient>
