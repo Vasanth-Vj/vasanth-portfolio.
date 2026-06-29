@@ -12,6 +12,9 @@ interface ButtonBaseProps {
   rightIcon?: React.ReactNode;
   to?: string;
   href?: string;
+  fullWidth?: boolean;
+  iconOnly?: boolean;
+  loadingText?: string;
 }
 
 export type ButtonProps = ButtonBaseProps &
@@ -26,11 +29,17 @@ export const Button: React.FC<ButtonProps> = ({
   rightIcon,
   to,
   href,
+  fullWidth = false,
+  iconOnly = false,
+  loadingText,
   children,
   className,
   disabled,
+  onClick,
   ...props
 }) => {
+  const isDisabled = disabled || isLoading;
+
   const baseStyles =
     'inline-flex items-center justify-center font-semibold text-sm transition-colors duration-150 focus:outline-none disabled:opacity-50 disabled:pointer-events-none rounded-[length:var(--radius-md)] select-none';
 
@@ -44,19 +53,42 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const sizeStyles = {
-    sm: 'px-space-3 py-space-1.5 text-xs',
-    md: 'px-space-6 py-space-3 text-sm',
-    lg: 'px-space-8 py-space-4 text-base',
+    sm: iconOnly ? 'p-space-2' : 'px-space-3 py-space-1.5 text-xs',
+    md: iconOnly ? 'p-space-3' : 'px-space-6 py-space-3 text-sm',
+    lg: iconOnly ? 'p-space-4' : 'px-space-8 py-space-4 text-base',
   };
 
   const isLink = !!to || !!href;
-  const classes = cn(baseStyles, variantStyles[variant], sizeStyles[size], className);
+  const classes = cn(
+    baseStyles,
+    variantStyles[variant],
+    sizeStyles[size],
+    fullWidth && 'w-full flex',
+    className,
+  );
+
+  const motionProps = {
+    whileHover: isDisabled ? undefined : { scale: 1.02 },
+    whileTap: isDisabled ? undefined : { scale: 0.98 },
+    transition: springPresets.tapScale,
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isDisabled) {
+      e.preventDefault();
+      return;
+    }
+    if (onClick) {
+      const clickHandler = onClick as React.MouseEventHandler<HTMLAnchorElement>;
+      clickHandler(e);
+    }
+  };
 
   const innerContent = (
     <>
       {isLoading && (
         <svg
-          className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+          className={cn('animate-spin h-4 w-4 text-current', !iconOnly && 'mr-2')}
           fill="none"
           viewBox="0 0 24 24"
         >
@@ -75,24 +107,25 @@ export const Button: React.FC<ButtonProps> = ({
           />
         </svg>
       )}
-      {!isLoading && leftIcon && <span className="mr-2 inline-flex">{leftIcon}</span>}
-      {children}
-      {!isLoading && rightIcon && <span className="ml-2 inline-flex">{rightIcon}</span>}
+      {!isLoading && leftIcon && !iconOnly && <span className="mr-2 inline-flex">{leftIcon}</span>}
+      {isLoading && loadingText ? <span>{loadingText}</span> : !iconOnly && children}
+      {iconOnly && !isLoading && (leftIcon || children)}
+      {!isLoading && rightIcon && !iconOnly && (
+        <span className="ml-2 inline-flex">{rightIcon}</span>
+      )}
     </>
   );
 
-  // If link, render standard tag or React Router Link (wrapped in motion for spring physics tap response)
   if (isLink) {
     if (to) {
       const linkProps = props as React.ComponentPropsWithoutRef<typeof Link>;
       return (
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={springPresets.tapScale}
-          className="inline-block"
-        >
-          <Link className={classes} {...linkProps}>
+        <motion.div {...motionProps} className={cn('inline-block', fullWidth && 'w-full')}>
+          <Link
+            className={cn(classes, isDisabled && 'opacity-50 pointer-events-none')}
+            onClick={handleLinkClick}
+            {...linkProps}
+          >
             {innerContent}
           </Link>
         </motion.div>
@@ -101,17 +134,13 @@ export const Button: React.FC<ButtonProps> = ({
 
     const anchorProps = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
     return (
-      <motion.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        transition={springPresets.tapScale}
-        className="inline-block"
-      >
+      <motion.div {...motionProps} className={cn('inline-block', fullWidth && 'w-full')}>
         <a
           href={href}
-          className={classes}
+          className={cn(classes, isDisabled && 'opacity-50 pointer-events-none')}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleLinkClick}
           {...anchorProps}
         >
           {innerContent}
@@ -123,11 +152,10 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonProps = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={springPresets.tapScale}
+      {...motionProps}
       className={classes}
-      disabled={disabled || isLoading}
+      disabled={isDisabled}
+      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
       {...(buttonProps as Omit<HTMLMotionProps<'button'>, 'children'>)}
     >
       {innerContent}

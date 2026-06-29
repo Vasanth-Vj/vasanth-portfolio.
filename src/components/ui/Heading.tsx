@@ -5,12 +5,16 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level?: 1 | 2 | 3 | 4;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'div';
   mono?: boolean;
+  balance?: boolean;
+  gradient?: boolean;
 }
 
 export const Heading: React.FC<HeadingProps> = ({
   level = 2,
   as,
   mono = false,
+  balance = false,
+  gradient = false,
   children,
   className,
   ...props
@@ -37,6 +41,9 @@ export const Heading: React.FC<HeadingProps> = ({
         getStyleClass(level),
         mono &&
           'font-mono text-[length:var(--font-mono-size)] leading-[var(--font-mono-lh)] uppercase tracking-wider',
+        balance && 'text-balance',
+        gradient &&
+          'bg-gradient-to-r from-text-primary via-accent-primary to-accent-hover bg-clip-text text-transparent inline-block',
         className,
       )}
       {...props}

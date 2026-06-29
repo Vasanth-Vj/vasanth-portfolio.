@@ -3,27 +3,43 @@ import { cn } from '../../lib/utils';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: 'default' | 'success' | 'accent';
-  dot?: boolean; // Adds a blinking availability dot (good for Vasanth's live SLA indicator)
+  size?: 'sm' | 'md';
+  outline?: boolean;
+  dot?: boolean; // Adds a blinking availability dot
 }
 
 export const Badge: React.FC<BadgeProps> = ({
   variant = 'default',
+  size = 'md',
+  outline = false,
   dot = false,
   children,
   className,
   ...props
 }) => {
   const variantStyles = {
-    default: 'bg-bg-secondary text-text-secondary border border-border-muted',
-    success: 'bg-state-success/10 text-state-success border border-state-success/20',
-    accent: 'bg-accent-primary/10 text-text-primary border border-accent-primary/20',
+    default: outline
+      ? 'bg-transparent text-text-secondary border border-border-muted'
+      : 'bg-bg-secondary text-text-secondary border border-border-muted',
+    success: outline
+      ? 'bg-transparent text-state-success border border-state-success'
+      : 'bg-state-success/10 text-state-success border border-state-success/20',
+    accent: outline
+      ? 'bg-transparent text-accent-primary border border-accent-primary/50'
+      : 'bg-accent-primary/10 text-text-primary border border-accent-primary/20',
+  };
+
+  const sizeStyles = {
+    sm: 'px-space-2 py-0.5 text-[10px] gap-1',
+    md: 'px-space-3 py-1 text-[length:var(--font-mono-size)] gap-1.5',
   };
 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 px-space-3 py-1 font-mono text-[length:var(--font-mono-size)] font-medium rounded-full select-none',
+        'inline-flex items-center font-mono font-medium rounded-full select-none',
         variantStyles[variant],
+        sizeStyles[size],
         className,
       )}
       {...props}
