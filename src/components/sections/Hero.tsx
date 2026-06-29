@@ -10,7 +10,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[80vh] lg:min-h-[85vh] flex items-center py-space-16 lg:py-space-24 overflow-hidden"
+      className="relative min-h-[70vh] lg:min-h-[75vh] flex items-center pt-space-8 pb-space-12 lg:pt-space-12 lg:pb-space-16 overflow-hidden"
     >
       {/* Visual background ambient glow blobs */}
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-accent-primary/5 blur-[120px] pointer-events-none -z-10" />
@@ -51,12 +51,24 @@ export const Hero: React.FC = () => {
               future-proof code.
             </p>
 
-            {/* CTAs (What should the visitor do next) */}
+            {/* CTAs (What should the visitor do next) - Premium Tall Sizing */}
             <div className="flex flex-col sm:flex-row gap-space-4 w-full sm:w-auto">
-              <Button variant="primary" size="lg" href="#work" rightIcon={<ArrowRight size={16} />}>
+              <Button
+                variant="primary"
+                size="lg"
+                href="#work"
+                className="!px-10 !py-[18px] text-base font-semibold"
+                rightIcon={<ArrowRight size={16} />}
+              >
                 View My Work
               </Button>
-              <Button variant="secondary" size="lg" href="#contact" leftIcon={<Code size={16} />}>
+              <Button
+                variant="secondary"
+                size="lg"
+                href="#contact"
+                className="!px-10 !py-[18px] text-base font-semibold"
+                leftIcon={<Code size={16} />}
+              >
                 Let's Talk
               </Button>
             </div>

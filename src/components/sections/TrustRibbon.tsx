@@ -44,9 +44,9 @@ const trustIndicators: TrustIndicator[] = [
 
 export const TrustRibbon: React.FC = () => {
   return (
-    <div className="relative border-y border-border-muted bg-bg-secondary/40 backdrop-blur-md py-space-6 overflow-hidden">
+    <div className="relative border-y border-border-muted bg-bg-secondary/40 backdrop-blur-md py-space-8 overflow-hidden">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-6 lg:gap-space-4 items-stretch justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-8 lg:gap-space-6 items-stretch justify-items-center">
           {trustIndicators.map((item) => (
             <motion.div
               key={item.label}
@@ -64,7 +64,7 @@ export const TrustRibbon: React.FC = () => {
                 <span className="font-mono text-xs font-semibold text-text-primary">
                   {item.label}
                 </span>
-                <span className="text-[10px] text-text-secondary leading-tight max-w-[150px]">
+                <span className="text-[11px] text-text-secondary leading-relaxed max-w-[150px]">
                   {item.description}
                 </span>
               </div>
