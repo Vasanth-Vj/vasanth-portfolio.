@@ -11,6 +11,7 @@ import { Input } from './components/ui/Input';
 import { Textarea } from './components/ui/Textarea';
 import { Mail, ArrowRight, User } from 'lucide-react';
 import { Hero } from './components/sections/Hero';
+import { TrustRibbon } from './components/sections/TrustRibbon';
 
 function App() {
   const [loading, setLoading] = React.useState(false);
@@ -27,6 +28,9 @@ function App() {
       <MainLayout>
         {/* Render newly implemented Hero Section */}
         <Hero />
+
+        {/* Render newly implemented Trust Ribbon */}
+        <TrustRibbon />
 
         <Container className="py-space-12">
           <div className="border-b border-border-muted pb-space-6 mb-space-8">
