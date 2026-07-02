@@ -58,9 +58,9 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-space-6">
           {/* Copyright & Info */}
           <div className="flex flex-col items-center md:items-start gap-space-2 text-center md:text-left">
-            <span className="font-semibold text-text-primary text-base">Vasanth Kumar</span>
+            <span className="font-semibold text-text-primary text-base">Vasanthakumar</span>
             <p className="text-xs text-text-disabled">
-              © {currentYear} Vasanth Kumar. All rights reserved. Designed & Engineered with React +
+              © {currentYear} Vasanthakumar. All rights reserved. Designed & Engineered with React +
               Tailwind.
             </p>
           </div>

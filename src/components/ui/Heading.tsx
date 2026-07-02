@@ -39,6 +39,7 @@ export const Heading: React.FC<HeadingProps> = ({
     <Component
       className={cn(
         getStyleClass(level),
+        !mono && 'font-serif',
         mono &&
           'font-mono text-[length:var(--font-mono-size)] leading-[var(--font-mono-lh)] uppercase tracking-wider',
         balance && 'text-balance',

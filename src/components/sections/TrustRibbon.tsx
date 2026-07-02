@@ -1,78 +1,76 @@
 import React from 'react';
-import { Zap, Code2, Cpu, Sparkles, Timer, ShieldCheck } from 'lucide-react';
+import { Briefcase, Heart, Users, Award } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { motion } from 'framer-motion';
 
-interface TrustIndicator {
+interface StatItem {
+  value: string;
   label: string;
-  description: string;
   icon: React.ReactNode;
 }
 
-const trustIndicators: TrustIndicator[] = [
+const stats: StatItem[] = [
   {
-    label: 'Performance First',
-    description: 'Load speeds optimized under 1s.',
-    icon: <Zap className="w-5 h-5 text-accent-primary" />,
+    value: '20+',
+    label: 'Projects Completed',
+    icon: <Briefcase className="w-5 h-5 text-accent-primary" />,
   },
   {
-    label: '100% Custom Code',
-    description: 'No bloated template builders.',
-    icon: <Code2 className="w-5 h-5 text-accent-primary" />,
+    value: '98%',
+    label: 'Client Satisfaction',
+    icon: <Heart className="w-5 h-5 text-accent-warm" />,
   },
   {
-    label: 'React + TypeScript',
-    description: 'Clean, type-safe frontend structures.',
-    icon: <Cpu className="w-5 h-5 text-accent-primary" />,
+    value: '15+',
+    label: 'Happy Clients',
+    icon: <Users className="w-5 h-5 text-accent-primary" />,
   },
   {
-    label: 'AI Integration',
-    description: 'Next-gen automation pipelines.',
-    icon: <Sparkles className="w-5 h-5 text-accent-primary" />,
-  },
-  {
-    label: 'Fast Response Time',
-    description: 'SLA communication under 2 hours.',
-    icon: <Timer className="w-5 h-5 text-accent-primary" />,
-  },
-  {
-    label: 'Source Code Ownership',
-    description: 'Complete project IP rights transfer.',
-    icon: <ShieldCheck className="w-5 h-5 text-accent-primary" />,
+    value: '2+',
+    label: 'Years Experience',
+    icon: <Award className="w-5 h-5 text-accent-warm" />,
   },
 ];
 
 export const TrustRibbon: React.FC = () => {
   return (
-    <div className="relative border-y border-border-muted bg-bg-secondary/40 backdrop-blur-md py-space-8 overflow-hidden">
+    <section className="relative py-space-6 overflow-visible z-20">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-8 lg:gap-space-6 items-stretch justify-items-center">
-          {trustIndicators.map((item) => (
-            <motion.div
-              key={item.label}
-              whileHover={{ y: -2 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-              className="flex flex-col items-center lg:items-start text-center lg:text-left gap-space-2 p-space-2 rounded-lg hover:bg-bg-primary/30 transition-colors duration-150 w-full"
-            >
-              {/* Icon Container */}
-              <div className="flex items-center justify-center w-9 h-9 rounded-full bg-accent-primary/5 border border-accent-primary/10 mb-space-1">
-                {item.icon}
+        {/* Paper style Stats Slab */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white border border-border-muted p-space-6 md:p-space-8 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between gap-space-6 md:gap-space-4"
+        >
+          {stats.map((item, idx) => (
+            <React.Fragment key={item.label}>
+              <div className="flex items-center gap-space-4 w-full md:w-auto justify-center md:justify-start px-space-4">
+                {/* Icon circle */}
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-bg-secondary border border-border-muted shrink-0 shadow-sm">
+                  {item.icon}
+                </div>
+
+                {/* Text Block */}
+                <div className="flex flex-col text-left">
+                  <span className="text-3xl font-bold font-serif text-text-primary tracking-tight leading-none mb-1">
+                    {item.value}
+                  </span>
+                  <span className="text-xs font-mono text-text-secondary uppercase tracking-wider">
+                    {item.label}
+                  </span>
+                </div>
               </div>
 
-              {/* Title & Desc */}
-              <div className="flex flex-col gap-0.5">
-                <span className="font-mono text-xs font-semibold text-text-primary">
-                  {item.label}
-                </span>
-                <span className="text-[11px] text-text-secondary leading-relaxed max-w-[150px]">
-                  {item.description}
-                </span>
-              </div>
-            </motion.div>
+              {/* Divider for desktop */}
+              {idx < stats.length - 1 && (
+                <div className="hidden md:block w-px h-12 bg-border-muted" />
+              )}
+            </React.Fragment>
           ))}
-        </div>
+        </motion.div>
       </Container>
-    </div>
+    </section>
   );
 };
 

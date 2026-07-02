@@ -5,76 +5,83 @@ import { Heading } from '../ui/Heading';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { HeroVisual } from './HeroVisual';
+import { UnderlineDoodle } from '../ui/Doodles';
 
 export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[70vh] lg:min-h-[75vh] flex items-center pt-space-8 pb-space-12 lg:pt-space-12 lg:pb-space-16 overflow-hidden"
+      className="relative min-h-[85vh] flex items-center pt-space-12 pb-space-16 overflow-hidden paper-texture"
     >
-      {/* Visual background ambient glow blobs */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-accent-primary/5 blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-indigo-500/5 blur-[100px] pointer-events-none -z-10" />
+      {/* Background ambient blobs (warm and subtle, no dark theme glow) */}
+      <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-accent-primary/3 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-accent-warm/3 blur-[100px] pointer-events-none -z-10" />
 
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-8 lg:gap-space-12 items-center">
-          {/* Left Column: Core Value Propositions & Answers to 5 Questions */}
+          {/* Left Column: Core Value Propositions */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Availability Badging (Why Trust Me / Who Am I) */}
+            {/* Availability Badging */}
             <div className="flex flex-wrap gap-space-3 items-center mb-space-6">
               <Badge variant="success" size="sm" dot>
-                Available for Projects
+                Available for New Projects
               </Badge>
-              <span className="text-[10px] font-mono text-text-disabled uppercase tracking-widest">
+              <span className="text-[10px] font-mono text-text-secondary uppercase tracking-widest">
                 SLA Response &lt; 2 hrs
               </span>
             </div>
 
             {/* Who Am I & What I Build */}
             <div className="mb-space-4 font-mono text-xs font-semibold tracking-wider text-accent-primary uppercase">
-              Vasanth Kumar &bull; Frontend Engineer
+              Vasanthakumar &bull; Creative Frontend Developer
             </div>
 
-            {/* Business Outcomes Oriented Headline */}
+            {/* Elegant Serif Headline with Hand-drawn Underline */}
             <Heading
               level={1}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-space-8 leading-tight"
-              gradient
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-text-primary mb-space-8 tracking-tight font-serif"
             >
-              High-Performance Interfaces Built to Grow Your Business.
+              I build digital products that{' '}
+              <span className="relative inline-block text-text-primary">
+                solve real problems
+                <UnderlineDoodle
+                  className="absolute left-0 bottom-[-14px] w-full h-[18px] text-accent-primary"
+                  delay={0.8}
+                />
+              </span>
+              .
             </Heading>
 
-            {/* Business Value Leads Technical Expertise */}
-            <p className="text-sm sm:text-base md:text-lg text-text-secondary mb-space-12 max-w-xl leading-relaxed">
-              Turn visitor traffic into measurable revenue with fast, conversion-optimized user
-              interfaces. Specializing in Vite, React, and TypeScript to deliver clean, scalable,
-              future-proof code.
+            {/* Subtext */}
+            <p className="text-base sm:text-lg text-text-secondary mb-space-10 max-w-xl leading-relaxed mt-2">
+              I help startups and businesses turn ideas into fast, beautiful, and high-converting
+              digital products that users love.
             </p>
 
-            {/* CTAs (What should the visitor do next) - Premium Tall Sizing */}
+            {/* CTA Buttons - Premium Sizing */}
             <div className="flex flex-col sm:flex-row gap-space-4 w-full sm:w-auto">
               <Button
                 variant="primary"
                 size="lg"
-                href="#work"
-                className="!px-10 !py-[18px] text-base font-semibold"
-                rightIcon={<ArrowRight size={16} />}
+                href="#contact"
+                className="!px-8 !py-[16px] text-base font-semibold"
+                rightIcon={<ArrowRight size={18} />}
               >
-                View My Work
+                Let's Work Together
               </Button>
               <Button
                 variant="secondary"
                 size="lg"
-                href="#contact"
-                className="!px-10 !py-[18px] text-base font-semibold"
-                leftIcon={<Code size={16} />}
+                href="#work"
+                className="!px-8 !py-[16px] text-base font-semibold"
+                leftIcon={<Code size={18} />}
               >
-                Let's Talk
+                View My Work
               </Button>
             </div>
           </div>
 
-          {/* Right Column: Premium Interactive Art Visual */}
+          {/* Right Column: Polaroid Visual Frame with Annotations */}
           <div className="lg:col-span-5 flex justify-center items-center mt-space-8 lg:mt-0">
             <HeroVisual />
           </div>

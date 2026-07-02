@@ -47,7 +47,7 @@ export const Header: React.FC = () => {
           {/* Logo & Availability Status */}
           <a href="#" className="flex items-center gap-space-3 group">
             <span className="font-mono text-base font-bold tracking-tight text-text-primary group-hover:text-accent-primary transition-colors duration-150">
-              VASANTH
+              VK Vasanthakumar
             </span>
             <Badge variant="success" size="sm" dot className="hidden sm:inline-flex">
               Available

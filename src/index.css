@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Geist+Mono:wght@400;500;600&family=Caveat:wght@400;700&display=swap');
 @import 'tailwindcss';
 @import './styles/variables.css';
 
@@ -15,6 +15,10 @@
   --color-accent-primary: var(--accent-primary);
   --color-accent-hover: var(--accent-hover);
   --color-accent-glow: var(--accent-glow);
+
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-warm-hover: var(--accent-warm-hover);
+  --color-accent-warm-glow: var(--accent-warm-glow);
 
   --color-state-success: var(--state-success);
   --color-state-error: var(--state-error);
@@ -40,6 +44,12 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-full: var(--radius-full);
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-handwritten: 'Caveat', cursive;
 }
 
 /* Base resets & utilities */
@@ -47,13 +57,17 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family:
-      'Inter',
-      system-ui,
-      -apple-system,
-      sans-serif;
+    font-family: var(--font-sans);
     overflow-x: hidden;
     scroll-behavior: smooth;
+  }
+
+  /* Headings default to elegant serif */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
   }
 
   /* Custom Selection styling */
@@ -64,8 +78,8 @@
 
   /* Custom Scrollbar styling */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-track {
@@ -75,6 +89,7 @@
   ::-webkit-scrollbar-thumb {
     background: var(--border-muted);
     border-radius: var(--radius-full);
+    border: 3px solid var(--bg-primary);
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -85,6 +100,107 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--border-muted) var(--bg-primary);
+  }
+}
+
+/* Custom Paper Theme Utilities */
+@layer utilities {
+  /* Paper background texture overlay */
+  .paper-texture {
+    position: relative;
+  }
+  .paper-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.04;
+    pointer-events: none;
+    background-image:
+      radial-gradient(var(--text-primary) 0.5px, transparent 0.5px),
+      radial-gradient(var(--text-primary) 0.5px, var(--bg-primary) 0.5px);
+    background-size: 20px 20px;
+    background-position:
+      0 0,
+      10px 10px;
+    z-index: 1;
+  }
+
+  /* Sketchy border */
+  .border-sketchy {
+    border: 2px solid var(--text-primary);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  }
+
+  /* Polaroid Photo Style */
+  .polaroid-frame {
+    background: #ffffff;
+    padding: 14px 14px 40px 14px;
+    box-shadow: var(--shadow-polaroid);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  /* Torn paper divider effect (SVG path backgrounds) */
+  .torn-divider-bottom {
+    position: relative;
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% 90%,
+      95% 95%,
+      90% 88%,
+      85% 94%,
+      80% 91%,
+      75% 95%,
+      70% 89%,
+      65% 93%,
+      60% 88%,
+      55% 94%,
+      50% 90%,
+      45% 93%,
+      40% 87%,
+      35% 92%,
+      30% 89%,
+      25% 94%,
+      20% 88%,
+      15% 93%,
+      10% 89%,
+      5% 94%,
+      0% 89%
+    );
+  }
+
+  .torn-divider-top {
+    position: relative;
+    clip-path: polygon(
+      0% 10%,
+      5% 6%,
+      10% 11%,
+      15% 7%,
+      20% 12%,
+      25% 6%,
+      30% 11%,
+      35% 8%,
+      40% 13%,
+      45% 7%,
+      50% 10%,
+      55% 6%,
+      60% 12%,
+      65% 7%,
+      70% 11%,
+      75% 5%,
+      80% 9%,
+      85% 6%,
+      90% 12%,
+      95% 7%,
+      100% 10%,
+      100% 100%,
+      0% 100%
+    );
   }
 }
 

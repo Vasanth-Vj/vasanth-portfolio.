@@ -1,28 +1,33 @@
 :root {
-  /* Brand Core Neutral Scale */
-  --bg-primary: hsl(240, 10%, 3.9%); /* Deep obsidian black */
-  --bg-secondary: hsl(240, 10%, 5.9%); /* Raised section background */
-  --bg-card: hsl(240, 10%, 9%); /* Card surface background */
+  /* Brand Core Colors (Redesigned Paper Theme) */
+  --bg-primary: hsl(40, 24%, 97%); /* Warm Paper White (#FAF8F4) */
+  --bg-secondary: hsl(40, 20%, 94%); /* Slightly darker warm paper (#F5F1E9) */
+  --bg-card: hsl(40, 24%, 98%); /* Cream-white paper surface (#FCFAF6) */
 
   /* Text Contrast Scale */
-  --text-primary: hsl(0, 0%, 98%); /* High-contrast off-white */
-  --text-secondary: hsl(240, 5%, 64.9%); /* Muted neutral gray */
-  --text-disabled: hsl(240, 5%, 33.9%); /* Disabled state dark gray */
+  --text-primary: hsl(0, 0%, 9%); /* Deep Obsidian/Charcoal (#171717) */
+  --text-secondary: hsl(0, 0%, 40%); /* Muted neutral gray (#666666) */
+  --text-disabled: hsl(0, 0%, 65%); /* Disabled state light gray (#A6A6A6) */
 
   /* Brand Accent Highlights */
-  --accent-primary: hsl(250, 89%, 65%); /* Premium Electric Indigo */
-  --accent-hover: hsl(250, 89%, 72%); /* Lighter Indigo for hover */
-  --accent-glow: hsla(250, 89%, 65%, 0.15); /* Diffused halo illumination */
+  --accent-primary: hsl(246, 92%, 67%); /* Electric Purple/Indigo (#6D5EF9) */
+  --accent-hover: hsl(246, 92%, 73%); /* Lighter Purple for hover */
+  --accent-glow: hsla(246, 92%, 67%, 0.12);
+
+  /* Warm Accent Orange */
+  --accent-warm: hsl(24, 96%, 53%); /* Warm Orange (#F97316) */
+  --accent-warm-hover: hsl(24, 96%, 59%);
+  --accent-warm-glow: hsla(24, 96%, 53%, 0.12);
 
   /* Semantic States */
-  --state-success: hsl(142, 70%, 45%); /* Mint green for availability/success */
-  --state-error: hsl(0, 84%, 60%); /* Soft coral red for form errors */
-  --state-warning: hsl(38, 92%, 50%); /* Warm amber for warnings */
+  --state-success: hsl(142, 60%, 45%); /* Soft green for availability */
+  --state-error: hsl(0, 80%, 55%); /* Soft red for errors */
+  --state-warning: hsl(38, 90%, 45%); /* Soft orange for warnings */
 
   /* Borders & Dividers */
-  --border-muted: hsl(240, 5.9%, 15%); /* Subtle layout dividers */
-  --border-active: hsl(240, 5.9%, 25%); /* Highlighted borders on card hovers */
-  --border-focus: hsl(250, 89%, 65%); /* Focus ring indicator border */
+  --border-muted: hsl(40, 15%, 88%); /* Soft warm divider */
+  --border-active: hsl(40, 20%, 80%); /* Slightly darker border on hover */
+  --border-focus: hsl(246, 92%, 67%); /* Focus ring indicator border */
 
   /* Spacing Scale */
   --space-1: 4px;
@@ -38,11 +43,14 @@
   /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
 
   /* Shadows & Glows */
-  --shadow-card-hover: 0 0 0 1px var(--border-active), 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 4px 20px -2px rgba(23, 23, 23, 0.03), 0 2px 6px -1px rgba(23, 23, 23, 0.02);
+  --shadow-card-hover:
+    0 12px 30px -8px rgba(23, 23, 23, 0.08), 0 4px 12px -2px rgba(23, 23, 23, 0.04);
+  --shadow-polaroid: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 16px -6px rgba(0, 0, 0, 0.05);
   --shadow-focus-ring: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent-primary);
   --glow-accent: 0 0 40px -10px var(--accent-glow);
 
@@ -67,20 +75,7 @@
   --font-weight-bold: 700;
 }
 
+/* Ensure we don't have separate dark theme overrides anymore */
 [data-theme='light'] {
-  /* Light Theme Mappings */
-  --bg-primary: hsl(0, 0%, 100%); /* Crisp white background */
-  --bg-secondary: hsl(240, 4.8%, 95.9%); /* Muted light gray */
-  --bg-card: hsl(0, 0%, 98%); /* Clean off-white surface */
-
-  --text-primary: hsl(240, 10%, 3.9%); /* Deep dark charcoal text */
-  --text-secondary: hsl(240, 3.8%, 46.1%); /* Standard gray body text */
-  --text-disabled: hsl(240, 4.8%, 70%); /* Very light disabled gray */
-
-  --border-muted: hsl(240, 5.9%, 90%); /* Soft light borders */
-  --border-active: hsl(240, 5.9%, 80%); /* Active hover state borders */
-
-  --accent-primary: hsl(250, 89%, 55%); /* Slightly darker indigo for readability */
-  --accent-hover: hsl(250, 89%, 45%);
-  --accent-glow: hsla(250, 89%, 55%, 0.08);
+  /* Same as root */
 }
